@@ -5,7 +5,11 @@ const { MovieList, UserList } = require('../FakeData');
 const resolvers = {
   Query: {
     // USERS RESOLVERS
-    users: () => UserList,
+    users: (_parent, _args, _context, _info) => {
+      if (UserList) return { users: UserList };
+
+      return { message: 'Yo, there was an error' };
+    },
     user: (_parent, { id }) => _.find(UserList, { id: Number(id) }),
 
     // MOVIES RESOLVERS
@@ -52,6 +56,14 @@ const resolvers = {
       _.remove(UserList, (user) => user.id === Number(id));
 
       return null;
+    },
+  },
+
+  UsersResult: {
+    __resolveType(obj) {
+      if (obj.users) return 'UsersSuccessfulResult';
+
+      return 'UsersErrorResult';
     },
   },
 };
