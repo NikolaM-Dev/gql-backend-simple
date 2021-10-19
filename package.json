@@ -19,7 +19,8 @@
   "homepage": "https://github.com/NikolaM-Dev/first-gql#readme",
   "dependencies": {
     "apollo-server": "^3.4.0",
-    "graphql": "^15.6.1"
+    "graphql": "^15.6.1",
+    "lodash": "^4.17.21"
   },
   "devDependencies": {
     "eslint": "^8.0.1",
